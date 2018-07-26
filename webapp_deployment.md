@@ -7,16 +7,16 @@ importantly, what each step means from my understanding.
 
 ## Goal
 Deploy django application on DigitalOcean server in the following steps:
-* ssh to connect to the remote DigitalOcean server.
-* Install all necessary components.
-* Create linux user.
-* Download django app repo.
-* Set up working envrionment.
-* Config django app settings.
-* Install gunicorn in the virtual environment and set it up.
-* Config Nginx.
-* Config domain namespace and direct it to the server ip.
-* Grab a beer. Your deserved it.
+1. ssh to connect to the remote DigitalOcean server.
+2. Install all necessary components.
+3. Create linux user.
+4. Download django app repo.
+5. Set up working envrionment.
+6. Config django app settings.
+7. Install gunicorn in the virtual environment and set it up.
+8. Config Nginx.
+9. Config domain namespace and direct it to the server ip.
+10. Grab a beer. Your deserved it.
 
 
 
