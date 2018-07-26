@@ -1,5 +1,5 @@
 # Django webapp deployment on Linux server (DigitalOcean)
-
+```
 ├── db.sqlite3
 ├── learning_log
 │   ├── __init__.py
@@ -30,6 +30,7 @@
     ├── tests.py
     ├── urls.py
     └── views.py
+```
 One Paragraph of project description goes here
 
 ## Getting Started
