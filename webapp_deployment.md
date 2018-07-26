@@ -31,8 +31,7 @@ data in both directions:
 ```
 The outside world <-> Nginx <-> The socket <-> Gunicorn <-> django <-> database
 ```
-
-
+In other words, Nginx is the webserver, whereas Gunicorn is the appserver.
 
 ## Getting Started
 Here is my django webapp file structure:
@@ -79,10 +78,23 @@ A couple things to note here:
   Deployment.
 
 ### Step 1: remote server
-* Create a Droplet (a virtual linux OS), add local SSH public key to the
-  droplet.
-
-
+* Create a Droplet named "django" a virtual linux OS), add local SSH public key
+to the droplet.
+* Copy the Droplet IP address, and connect to the server. Login is not required
+  because the local public ssh has been uploaded.
+```
+$ ssh root@server-ip-address
+```
+* Create an alias to the droplet:
+```
+$ vim /home/user/.ssh/config
+```
+add:
+```
+Host remote-django
+    Hostname 159.203.126.223
+    User root
+```
 
 
 
