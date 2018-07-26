@@ -1,13 +1,29 @@
 # Django webapp deployment on Linux server (DigitalOcean)
 I have created a simple django webapp called learning_log. It has been tested
-in the local server. I went through a lot of pain to get it finally deployed on
-the server hosted by DigitalOcean. So basically, this note is just to remind me
-what exactly I have done to get the webapp deployed and more importantly, what
-each step means from my understanding.
+in the local development server. I went through a lot of pain to get it finally
+deployed on the server hosted by DigitalOcean. So basically, this note is just
+to remind me what exactly I have done to get the webapp deployed and more
+importantly, what each step means from my understanding.
+
+## Goal
+Deploy django application on DigitalOcean server in the following steps:
+* ssh to connect to the remote DigitalOcean server.
+* Install all necessary components.
+* Create linux user.
+* Download django app repo.
+* Set up working envrionment.
+* Config django app settings.
+* Install gunicorn in the virtual environment and set it up.
+* Config Nginx.
+* Config domain namespace and direct it to the server ip.
+* Grab a beer. Your deserved it.
+
+
 
 ## Getting Started
 Here is my django webapp file structure:
 ```
+Learning_log
 ├── db.sqlite3
 ├── learning_log
 │   ├── __init__.py
@@ -39,6 +55,11 @@ Here is my django webapp file structure:
     ├── urls.py
     └── views.py
 ```
+A couple things to note here:
+* The project name is learning_log. And there is also a folder with the same
+  name inside the project. Make sure it keeps that way. The best practice is to
+  make the repo name on Github have the same name as the project name, in order
+  to avoid future confusion.
 
 
 ### Prerequisites
