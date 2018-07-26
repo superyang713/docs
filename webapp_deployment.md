@@ -1,4 +1,12 @@
 # Django webapp deployment on Linux server (DigitalOcean)
+I have created a simple django webapp called learning_log. It has been tested
+in the local server. I went through a lot of pain to get it finally deployed on
+the server hosted by DigitalOcean. So basically, this note is just to remind me
+what exactly I have done to get the webapp deployed and more importantly, what
+each step means from my understanding.
+
+## Getting Started
+Here is my django webapp file structure:
 ```
 ├── db.sqlite3
 ├── learning_log
@@ -31,11 +39,7 @@
     ├── urls.py
     └── views.py
 ```
-One Paragraph of project description goes here
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
