@@ -9,14 +9,28 @@ importantly, what each step means from my understanding.
 Deploy django application on DigitalOcean server in the following steps:
 1. ssh to connect to the remote DigitalOcean server.
 2. Install all necessary components.
-3. Create linux user.
+3. Create linux user and config terminal.
 4. Download django app repo.
 5. Set up working envrionment.
-6. Config django app settings.
-7. Install gunicorn in the virtual environment and set it up.
-8. Config Nginx.
-9. Config domain namespace and direct it to the server ip.
-10. Grab a beer. Your deserved it.
+6. Create the production postgreSQL databsae.
+7. Config django app settings.
+8. Install gunicorn in the virtual environment and set it up.
+9. Config Nginx.
+10. Config domain namespace and direct it to the server ip.
+11. Grab a beer. Your deserve it.
+
+## Concept
+Here is a oversimplied explanaton on Nginx, Gunicorn, socket, and wsgi.
+Nginx faces the outside world. It serves static files (images, css, etc)
+directly from the file system.
+However, Nginx cannot talk directly to Django applications. Something is needed
+to run the django application, feed the requests from web(Nginx) to django,
+and return responses. That is where Gunicorn comes in. Gunicorn creates a Unix
+socket, and serve responses to Nginx via the wsgi protocol - the socket passes
+data in both directions:
+```
+The outside world <-> Nginx <-> The socket <-> Gunicorn <-> django <-> database
+```
 
 
 
@@ -55,11 +69,22 @@ Learning_log
     ├── urls.py
     └── views.py
 ```
+
 A couple things to note here:
 * The project name is learning_log. And there is also a folder with the same
   name inside the project. Make sure it keeps that way. The best practice is to
   make the repo name on Github have the same name as the project name, in order
   to avoid future confusion.
+* Sqlite3 was used during development, whereas PostgreSQL is used for
+  Deployment.
+
+### Step 1: remote server
+* Create a Droplet (a virtual linux OS), add local SSH public key to the
+  droplet.
+
+
+
+
 
 
 ### Prerequisites
@@ -141,3 +166,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * Hat tip to anyone whose code was used
 * Inspiration
 * etc
+https://gist.github.com/Atem18/4696071
