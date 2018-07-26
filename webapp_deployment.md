@@ -8,10 +8,10 @@ importantly, what each step means from my understanding.
 ## Goal
 Deploy django application on DigitalOcean server in the following steps:
 1. ssh to connect to the remote DigitalOcean server.
-2. Install all necessary components.
-3. Create linux user and config terminal.
+2. Create linux user and config terminal.
+3. Install all necessary components.
 4. Download django app repo.
-5. Set up working envrionment.
+5. Set up virtual working envrionment.
 6. Create the production postgreSQL databsae.
 7. Config django app settings.
 8. Install gunicorn in the virtual environment and set it up.
@@ -77,7 +77,7 @@ A couple things to note here:
 * Sqlite3 was used during development, whereas PostgreSQL is used for
   Deployment.
 
-### Step 1: remote server
+### Step 1: Set up remote server
 * Create a Droplet named "django" a virtual linux OS), add local SSH public key
 to the droplet.
 * Copy the Droplet IP address, and connect to the server. Login is not required
@@ -89,12 +89,42 @@ $ ssh root@server-ip-address
 ```
 $ vim /home/user/.ssh/config
 ```
-add:
 ```
 Host remote-django
-    Hostname 159.203.126.223
+    Hostname DROPLET_IP_ADDRESS
     User root
 ```
+
+### Step 2: Create new linux user and personalize terminal
+* Let us not use root, but instead, create a user called django, give the
+  user sudo privileges, and switch to the new user account.
+```
+$ adduser django
+$ usermod -aG sudo django
+$ su django
+```
+* Now it is time to config the terminal by installing Oh-my-zsh, personal
+  vimrc, and all kinds of that stuff if you want.
+
+### Step 3: Install all necessary components
+* I am using python3, which you should, too, since django has dropped the
+  support for python2. Install python3, postgreSQL and nginx via following
+  commands:
+```
+$ sudo apt update
+$ sudo apt-get install python3-pip python3-dev libpq-dev postgresql
+postgresql-contrib nginx
+$ pip3 install --upgrade pip
+```
+
+### Step 4: Download django app repo.
+```
+$ cd
+$ git clone https://github.com/superyang713/learning_log.git
+```
+
+### Step 5: Set up virtual working environment
+
 
 
 
