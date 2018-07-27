@@ -82,40 +82,39 @@ A couple things to note here:
 to the droplet.
 * Copy the Droplet IP address, and connect to the server. Login is not required
   because the local public ssh has been uploaded.
-```
-$ ssh root@server-ip-address
-```
+  ```
+  $ ssh root@server-ip-address
+  ```
 * Create an alias to the droplet:
-```
-$ vim /home/user/.ssh/config
-```
-```
-Host remote-django
-    Hostname DROPLET_IP_ADDRESS
-    User root
-```
+  ```
+  $ vim /home/user/.ssh/config
+  ```
+  ```
+  Host remote-django
+      Hostname DROPLET_IP_ADDRESS
+      User root
+  ```
 
 ### Step 2: Create new linux user and personalize terminal
 * Let us not use root, but instead, create a user called django, give the
   user sudo privileges, and switch to the new user account.
-```
-$ adduser django
-$ usermod -aG sudo django
-$ su django
-```
+  ```
+  $ adduser django
+  $ usermod -aG sudo django
+  $ su django
+  ```
 * Now it is time to config the terminal by installing Oh-my-zsh, personal
-  vimrc, and all kinds of that stuff if you want.
+  vimrc and vim plugins.
 
 ### Step 3: Install all necessary components
 * I am using python3, which you should, too, since django has dropped the
   support for python2. Install python3, postgreSQL and nginx via following
   commands:
-```
-$ sudo apt update
-$ sudo apt-get install python3-pip python3-dev libpq-dev postgresql
-postgresql-contrib nginx
-$ pip3 install --upgrade pip
-```
+  ```
+  $ sudo apt update
+  $ sudo apt-get install python3-pip python3-dev virtualenv libpq-dev postgresql
+  postgresql-contrib nginx
+  ```
 
 ### Step 4: Download django app repo.
 ```
@@ -124,6 +123,32 @@ $ git clone https://github.com/superyang713/learning_log.git
 ```
 
 ### Step 5: Set up virtual working environment
+* Now we need to work on the project in an isolated python envrionment.
+  ```
+  $ mkdir ~/VirtualEnvironment
+  $ cd ~/VirtualEnvironment
+  $ virtualenv --python=/usr/bin/python3 django
+  $ source django/bin/activate
+  ```
+* Install all the required python packages for the django app development.
+  ```
+  pip install -r requirements.txt
+  ```
+* Finally, gunicorn also needs to be installed via pip (gunicorn is not
+  included in my requirements.txt because I did not need it for app development
+  in a local server)
+  ```
+  pip install gunicorn
+  ```
+* Note that gunicorn is installed via pip inside the virtual env, so the
+  executable, in this case, is at
+  ```
+  /home/django/VirtualEnvironment/django/bin
+  ```
+  This is really important.
+
+
+
 
 
 
