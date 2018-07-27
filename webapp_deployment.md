@@ -221,9 +221,9 @@ to the droplet.
   ```
   python manage.py runserver 0.0.0.0:8000
   ```
-  In the local machine browser, visit the ip address followed by :8000
+  In the local machine browser, visit the ip address followed by :8000/journal
   ```
-  http://server_ip:8000
+  http://server_ip:8000/journal
   ```
 
 ### Step 9: Test Gunicorn
