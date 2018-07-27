@@ -1,6 +1,8 @@
 # Django webapp deployment on Linux server (DigitalOcean)
 I have created a simple django webapp called learning_log. It has been tested
-in the local development server. I went through a lot of pain to get it finally deployed on the server hosted by DigitalOcean. So basically, this note is just to remind me what exactly I have done to get the webapp deployed and more
+in the local development server. I went through a lot of pain to get it finally
+deployed on the server hosted by DigitalOcean. So basically, this note is just
+to remind me of what exactly I have done to get the webapp deployed and more
 importantly, what each step means from my understanding.
 
 ## Goal
@@ -78,7 +80,7 @@ A couple things to note here:
   Deployment.
 
 ### Step 1: Set up remote server
-* Create a Droplet named "django" a virtual linux OS), add local SSH public key
+* Create a Droplet named "django" (a virtual linux OS), add local SSH public key
 to the droplet.
 * Copy the Droplet IP address, and connect to the server. Login is not required
   because the local public ssh has been uploaded.
@@ -174,6 +176,7 @@ to the droplet.
   allowed_hosts = [
     '159.203.126.223',
     'yangdai.info',
+    'www.yangdai.info'
   ]
   ```
 * Modify the database params since the default is sqlite3.
@@ -302,7 +305,7 @@ to the droplet.
   ```
 * Now that Gunicorn is up and running, it is listening to the socket and
   processing the traffic that is passed to the socket. So we need to config
-  config Nginx to pass traffic to the socket.
+  Nginx to pass traffic to the socket.
 
 ### Step 11: Config Nginx
 * Start by creating and opening a new server block in Nginx's sites-available
@@ -313,7 +316,7 @@ to the droplet.
   ```
   server {
       listen 80;
-      server_name 159.203.126.223 yangdai.info;
+      server_name 159.203.126.223 yangdai.info www.yangdai.info;
 
       # Ignore any problems with finding a favicon.
       location = /favicon.ico { access_log off; log_not_found off; }
@@ -359,7 +362,11 @@ to the droplet.
   ns3.digitalocean.com
   ```
   The host name is the domain name.
-* Create an A record. Direct it to the server ip address.
+* Create an A record. Direct yangdai.info to the server ip address.
+* Create an A record. Direct www.yangdai.info it to the server ip address.
 
 ### Step 13:
 Open the website in a browser, and grab a beer.
+
+### To get an SSL certificate to secure the traffic, follow [this
+tutorial](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04)
