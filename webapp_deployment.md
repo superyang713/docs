@@ -1,7 +1,6 @@
 # Django webapp deployment on Linux server (DigitalOcean)
 I have created a simple django webapp called learning_log. It has been tested
-in the local development server. I went through a lot of pain to get it finally
-deployed on the server hosted by DigitalOcean. So basically, this note is just to remind me what exactly I have done to get the webapp deployed and more
+in the local development server. I went through a lot of pain to get it finally deployed on the server hosted by DigitalOcean. So basically, this note is just to remind me what exactly I have done to get the webapp deployed and more
 importantly, what each step means from my understanding.
 
 ## Goal
@@ -313,22 +312,54 @@ to the droplet.
   ```
   ```
   server {
-    listen 80;
-    server_name 159.203.126.223;
+      listen 80;
+      server_name 159.203.126.223 yangdai.info;
 
-    # Ignore any problems with finding a favicon.
-    location = /favicon.ico { access_log off; log_not_found off; }
+      # Ignore any problems with finding a favicon.
+      location = /favicon.ico { access_log off; log_not_found off; }
 
-    # Tell Nginx where to find the static assets.
-    location /static/ {
-        root /home/django/learning_log;
-    }
+      # Tell Nginx where to find the static assets.
+      location /static/ {
+          root /home/django/learning_log;
+      }
 
-    # Include default proxy_params and pass traffic to the socket.
-    location / {
-        include proxy_params;
-        proxy_pass http://unix:/home/django/learning_log/learning_log.sock;
-    }
+      # Include default proxy_params and pass traffic to the socket.
+      location / {
+          include proxy_params;
+          proxy_pass http://unix:/home/django/learning_log/learning_log.sock;
+      }
   }
   ```
+* Now enable the Ngnix service by linking the file to the sites-enabled
+  directory:
+  ```
+  sudo ln -s /etc/nginx/sites-available/learning_log /etc/nginx/sites-enabled
+  ```
+* Test Nginx config for syntax errors:
+  ```
+  sudo nginx -t
+  ```
+* Restart Nginx:
+  ```
+  sudo systemctl restart nginx
+  ```
+* Open up firewall to normal traffic on port 80.
+  ```
+  sudo ufw allow 'Nginx Full'
+  ```
+  Go to server's ip address in the browser to view the application.
 
+### Step 12: Config domain namespace and direct it to the server ip.
+* Since I have a domain from Godaddy, I will skip the part how to get a domain.
+* In DigitalOcean webpage, click "Create", select Domains/DNS.
+* Create 3 NS record, and the values are:
+  ```
+  ns1.digitalocean.com
+  ns2.digitalocean.com
+  ns3.digitalocean.com
+  ```
+  The host name is the domain name.
+* Create an A record. Direct it to the server ip address.
+
+### Step 13:
+Open the website in a browser, and grab a beer.
