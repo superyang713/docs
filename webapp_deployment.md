@@ -1,8 +1,7 @@
 # Django webapp deployment on Linux server (DigitalOcean)
 I have created a simple django webapp called learning_log. It has been tested
 in the local development server. I went through a lot of pain to get it finally
-deployed on the server hosted by DigitalOcean. So basically, this note is just
-to remind me what exactly I have done to get the webapp deployed and more
+deployed on the server hosted by DigitalOcean. So basically, this note is just to remind me what exactly I have done to get the webapp deployed and more
 importantly, what each step means from my understanding.
 
 ## Goal
@@ -14,10 +13,11 @@ Deploy django application on DigitalOcean server in the following steps:
 5. Set up virtual working envrionment.
 6. Create the production postgreSQL databsae.
 7. Config django app settings.
-8. Install gunicorn in the virtual environment and set it up.
-9. Config Nginx.
-10. Config domain namespace and direct it to the server ip.
-11. Grab a beer. Your deserve it.
+8. Complete the django app initial setup and test it.
+9. Install gunicorn in the virtual environment and set it up.
+10. Config Nginx.
+11. Config domain namespace and direct it to the server ip.
+12. Grab a beer. Your deserve it.
 
 ## Concept
 Here is a oversimplied explanaton on Nginx, Gunicorn, socket, and wsgi.
@@ -117,10 +117,10 @@ to the droplet.
   ```
 
 ### Step 4: Download django app repo.
-```
-$ cd
-$ git clone https://github.com/superyang713/learning_log.git
-```
+  ```
+  $ cd
+  $ git clone https://github.com/superyang713/learning_log.git
+  ```
 
 ### Step 5: Set up virtual working environment
 * Now we need to work on the project in an isolated python envrionment.
@@ -141,96 +141,93 @@ $ git clone https://github.com/superyang713/learning_log.git
   pip install gunicorn
   ```
 * Note that gunicorn is installed via pip inside the virtual env, so the
-  executable, in this case, is at
+  gunicorn executable, in this case, is at
   ```
   /home/django/VirtualEnvironment/django/bin
   ```
   This is really important.
 
 
+### Step 6: Create the production postgreSQL databsae.
+* Log into an interactive Postgre session.
+  ```
+  sudo -u postgres psql
+  ```
+* Inside the postgres shell, type:
+  ```
+  CREATE DATABASE learning_log;
+  CREATE USER django WITH PASSWORD 'password';
+  ALTER ROLE django SET client_encoding TO 'utf8';
+  ALTER ROLE django SET default_transaction_isolation TO 'read committed';
+  ALTER ROLE django SET timezone TO 'UTC';
+  GRANT ALL PRIVILEGES ON DATABASE learning_log TO django;
+  \q
+  ```
+
+### Step 7: Config django app settings.
+* Open django project setting.
+  ```
+  vim ~/learning_log/learning_log/settings.py
+  ```
+* Add domain name and Droplet ip address to the ALLOWED_HOSTS.
+  ```
+  allowed_hosts = [
+    '159.203.126.223',
+    'yangdai.info',
+  ]
+  ```
+* Modify the database params since the default is sqlite3.
+  ```
+  DATABASES = {
+      'default': {
+          'ENGINE': 'django.db.backends.postgresql_psycopg2',
+          'NAME': 'learning_log',
+          'USER': 'django',
+          'PASSWORD': 'password',
+          'HOST': 'localhost',
+          'PORT': '',
+      }
+  }
+  ```
+* Near the end of the setting.py file, add a setting in the area of static files
+  settings indicating where the static files should be placed. It is necessary
+  so that Nginx can handle requests for these static items.
+  ```
+  STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+  ```
+
+### Complete django app initial setup and test it.
+* Migrate the initial database schema to our PostgreSQL database.
+  ```
+  cd ~/learning_log
+  python manage.py makemigrations
+  python manage.py migrate
+  ```
+* Create an admin user for the django webapp.
+  ```
+  python manage.py createsuperuser
+  ```
+* Collect all of the static content into a single directory we have configured
+  in the setting.py file:
+  ```
+  python manage.py collectstatic
+  ```
+* (optional) Modify the gitignore file to include static folder.
+* Now it is time to test if the project still works with the new database and
+  settings, etc
+  ```
+  python manage.py runserver 0.0.0.0:8000
+  ```
+  In the local machine browser, visit the ip address followed by :8000
+  ```
+  http://server_ip:8000
+  ```
 
 
 
 
 
 
-### Prerequisites
 
-What things you need to install the software and how to install them
 
-```
-Give examples
-```
 
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-https://gist.github.com/Atem18/4696071
