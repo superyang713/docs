@@ -197,7 +197,7 @@ to the droplet.
   STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
   ```
 
-### Complete django app initial setup and test it.
+### Step 8: Complete django app initial setup and test it.
 * Migrate the initial database schema to our PostgreSQL database.
   ```
   cd ~/learning_log
@@ -224,7 +224,7 @@ to the droplet.
   http://server_ip:8000
   ```
 
-### Test Gunicorn
+### Step 9: Test Gunicorn
 * Again, Gunicorn was installed in the virtual envrionment. Let's test it first
   to make sure it can serve the application before we leave the virtual
   envrionment.
@@ -244,7 +244,7 @@ to the droplet.
   $ deactivate
   ```
 
-### Config Gunicorn and test it again with the new service file.
+### Step 10: Config Gunicorn and test it again with the new service file.
 * Gunicorn has been tested and it worked. So we need to config it to make it
   more robust for starting and stopping the application server. The best way to
   do this is to let Systemd manage Gunicorn, so we need to make a systemd
@@ -301,5 +301,34 @@ to the droplet.
   ```
   sudo journalctl -u gunicorn
   ```
+* Now that Gunicorn is up and running, it is listening to the socket and
+  processing the traffic that is passed to the socket. So we need to config
+  config Nginx to pass traffic to the socket.
 
+### Step 11: Config Nginx
+* Start by creating and opening a new server block in Nginx's sites-available
+  directory:
+  ```
+  $ sudo vim /etc/nginx/sites-available/learning_log
+  ```
+  ```
+  server {
+    listen 80;
+    server_name 159.203.126.223;
+
+    # Ignore any problems with finding a favicon.
+    location = /favicon.ico { access_log off; log_not_found off; }
+
+    # Tell Nginx where to find the static assets.
+    location /static/ {
+        root /home/django/learning_log;
+    }
+
+    # Include default proxy_params and pass traffic to the socket.
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/django/learning_log/learning_log.sock;
+    }
+  }
+  ```
 
