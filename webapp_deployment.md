@@ -19,7 +19,7 @@ Deploy django application on DigitalOcean server in the following steps:
 10. Config Gunicorn and test it again with the new service file.
 11. Config Nginx.
 12. Config domain namespace and direct it to the server ip.
-13. Grab a beer. Your deserve it.
+13. Get an SSL certificate to secure the traffic.
 
 ## Concept
 Here is a oversimplied explanaton on Nginx, Gunicorn, socket, and wsgi.
