@@ -369,5 +369,5 @@ to the droplet.
 Open the website in a browser, and grab a beer.
 
 ## Additional material
-To get an SSL certificate to secure the traffic, follow [this tutorial]
-(https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04)
+To get an SSL certificate to secure the traffic, follow [this
+tutorial](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04)
