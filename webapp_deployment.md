@@ -417,8 +417,5 @@ to the droplet.
 
 
 ### Step 14: Open the website in a browser, and grab a beer.
-The website is up and running, even with a secure SSL certificate. Awesome.
-
-## Additional material
-To get an SSL certificate to secure the traffic, follow [this tutorial](
-https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04).
+The website is up and running, even with a secure SSL certificate. Awesome. So
+I say I really deserve a beer!
