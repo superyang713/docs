@@ -22,7 +22,7 @@ Deploy django application on DigitalOcean server in the following steps:
 13. Get an SSL certificate to secure the traffic.
 
 ## Concept
-Here is a oversimplied explanaton on Nginx, Gunicorn, socket, and wsgi.
+Here is a oversimplied explanation on Nginx, Gunicorn, socket, and wsgi.
 Nginx faces the outside world. It serves static files (images, css, etc)
 directly from the file system.
 However, Nginx cannot talk directly to Django applications. Something is needed
