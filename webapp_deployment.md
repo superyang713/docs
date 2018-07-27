@@ -365,8 +365,59 @@ to the droplet.
 * Create an A record. Direct yangdai.info to the server ip address.
 * Create an A record. Direct www.yangdai.info it to the server ip address.
 
-### Step 13:
-Open the website in a browser, and grab a beer.
+### Step 13: Get an SSL certificate to secure the traffic.
+* Install Certbot
+  ```
+  sudo add-apt-repository ppa:certbot/certbot
+  sudo apt update
+  sudo apt install python3-certbot-nginx
+  ```
+* Set up basic firewall for linux.
+  ```
+  sudo ufw app list
+  ```
+  It should show the following:
+  ```
+  Available applications:
+  Nginx Full
+  Nginx HTTP
+  Nginx HTTPS
+  OpenSSH
+  ```
+  OpenSSH is the app that helps to connect the server via ssh, so it needs to
+  be allowed.
+  ```
+  sudo ufw allow OpenSSH
+  ```
+  Then, enable firewall by typing:
+  ```
+  sudo ufw enable
+  ```
+  Check the firewall status:
+  ```
+  sudo ufw status
+  ```
+  It should show the following:
+  ```
+  To                         Action      From
+  --                         ------      ----
+  Nginx Full                 ALLOW       Anywhere
+  OpenSSH                    ALLOW       Anywhere
+  Nginx Full (v6)            ALLOW       Anywhere (v6)
+  OpenSSH (v6)               ALLOW       Anywhere (v6)
+  ```
+* Obtain an SSL Certificate
+  ```
+  sudo certbot --nginx -d yangdai.info -d www.yangdai.info
+  ```
+* Set up auto-renewal:
+  ```
+  sudo certbot renew --dry-run
+  ```
+
+
+### Step 14: Open the website in a browser, and grab a beer.
+The website is up and running, even with a secure SSL certificate. Awesome.
 
 ## Additional material
 To get an SSL certificate to secure the traffic, follow [this tutorial](
