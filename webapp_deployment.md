@@ -14,10 +14,11 @@ Deploy django application on DigitalOcean server in the following steps:
 6. Create the production postgreSQL databsae.
 7. Config django app settings.
 8. Complete the django app initial setup and test it.
-9. Install gunicorn in the virtual environment and set it up.
-10. Config Nginx.
-11. Config domain namespace and direct it to the server ip.
-12. Grab a beer. Your deserve it.
+9. Test Gunicorn.
+10. Config Gunicorn.
+11. Config Nginx.
+12. Config domain namespace and direct it to the server ip.
+13. Grab a beer. Your deserve it.
 
 ## Concept
 Here is a oversimplied explanaton on Nginx, Gunicorn, socket, and wsgi.
@@ -212,7 +213,7 @@ to the droplet.
   ```
   python manage.py collectstatic
   ```
-* (optional) Modify the gitignore file to include static folder.
+* (optional) Modify the gitignore file to exclude static folder from git repo.
 * Now it is time to test if the project still works with the new database and
   settings, etc
   ```
@@ -223,11 +224,56 @@ to the droplet.
   http://server_ip:8000
   ```
 
+### Test Gunicorn
+* Again, Gunicorn was installed in the virtual envrionment. Let's test it first
+  to make sure it can serve the application before we leave the virtual
+  envrionment.
+  ```
+  $ cd ~/learning_log
+  $ gunicorn --bind 0.0.0.0:8000 learning_log.wsgi
+  ```
+  This will start Gunicorn on the same interface that the Django development
+  server was running on. so we can go back to the browser and test the app
+  again.
+  As a reminder, Gunicorn does not know about static files. That is Nginx's
+  job. Therefore, the webapp does not have css styling.
+  wsgi is the entry point for Gunicorn to communicate with the django app.
+* Hopefully the test is a success. Now it is time to get out of the virtual
+  envrionment.
+  ```
+  $ deactivate
+  ```
 
+### Config Gunicorn service file.
+* Gunicorn has been tested and it worked. So we need to config it to make it
+  more robust for starting and stopping the application server. The best way to
+  do this is to let Systemd manage Gunicorn, so we need to make a systemd
+  service file for Gunicorn.
+  All details has been explained in the comments in the service file.
+  ```
+  sudo vim /etc/systemd/system/gunicorn.service
+  ```
+  ```
+  # Specify metadata and dependencies.
+  # Tell init system to only start this after the networking target has been
+  # reached.
+  [Unit]
+  Description=gunicorn daemon
+  After=network.target
 
-
-
-
-
-
+  # Give group ownership to www.data group so that Nginx can communicate easily
+  # with Gunicorn.
+  # Specify the full path to the Gunicorn executable. Note that gunicorn is
+  # installed within virtual environment.
+  # Instead of binding Gunicorn to a port like I did during test, I bind it to a
+  # socket within the project directory because it is safer and faster. It has
+  # been discussed in the concept section.
+  [Service]
+  User=django
+  Group=www-data
+  WorkingDirectory=/home/django/learning_log
+  ExecStart=/home/django/VirtualEnvironment/django/bin/gunicorn --access-logfile -
+    --workers 3 --bind unix:/home/django/learning_log/learning_log.sock
+    learning_log.wsgi:application
+  ```
 
