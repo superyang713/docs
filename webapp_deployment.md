@@ -15,7 +15,7 @@ Deploy django application on DigitalOcean server in the following steps:
 7. Config django app settings.
 8. Complete the django app initial setup and test it.
 9. Test Gunicorn.
-10. Config Gunicorn.
+10. Config Gunicorn and test it again with the new service file.
 11. Config Nginx.
 12. Config domain namespace and direct it to the server ip.
 13. Grab a beer. Your deserve it.
@@ -244,7 +244,7 @@ to the droplet.
   $ deactivate
   ```
 
-### Config Gunicorn service file.
+### Config Gunicorn and test it again with the new service file.
 * Gunicorn has been tested and it worked. So we need to config it to make it
   more robust for starting and stopping the application server. The best way to
   do this is to let Systemd manage Gunicorn, so we need to make a systemd
@@ -272,8 +272,34 @@ to the droplet.
   User=django
   Group=www-data
   WorkingDirectory=/home/django/learning_log
-  ExecStart=/home/django/VirtualEnvironment/django/bin/gunicorn --access-logfile -
-    --workers 3 --bind unix:/home/django/learning_log/learning_log.sock
-    learning_log.wsgi:application
+  ExecStart=/home/django/VirtualEnvironment/django/bin/gunicorn \
+  	--access-logfile - --workers 3 --bind \
+  	unix:/home/django/learning_log/learning_log.sock \
+  	learning_log.wsgi:application
+
+  # Tell systemd what to link this service to if we enable it to start at boot.
+  # We want this service to start when the regular multi-user system is running.
+  [Install]
+  WantedBy=multi-user.target
   ```
+* Now that the service file has been set up, we need to start the Gunicorn
+  service now and enable it to start at boot as well.
+  ```
+  sudo systemctl start gunicorn
+  sudo systemctl enable gunicorn
+  ```
+* Check Gunicorn service status to see if everything is ok.
+  ```
+  sudo systemctl status gunicorn
+  ```
+  Next, check the existence of the learning_log.sock file within the project
+  directory.
+  ```
+  $ ls /home/django/learning_log
+  ```
+  If gunicorn service is not working correctly, check the service log.
+  ```
+  sudo journalctl -u gunicorn
+  ```
+
 
