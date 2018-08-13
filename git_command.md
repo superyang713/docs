@@ -187,15 +187,15 @@ them.
 
 * re-edit the commit message or update the last commit.
 
-```
-git commit --amend
-```
+  ```
+  git commit --amend
+  ```
 
 * Download the remote repo via url.
 
-```
-git clone <url> <dir_name>
-```
+  ```
+  git clone <url> <dir_name>
+  ```
 
 ## Useful terms.
 * `origin` a variable that contains url for remote repo.
