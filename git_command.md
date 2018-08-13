@@ -28,11 +28,13 @@ them.
 
 ## Commit the changes
 
-### Since a new file `.gitignore` is added, the local repo is different from the original state. At this point, it is a good time to commit the first change to the local repo.
+* Since a new file `.gitignore` is added, the local repo is different from the
+original state. At this point, it is a good time to commit the first change to
+the local repo.  There are two steps involved when committing a change to the
+local repo.
 
-* There are two steps involved when committing a change to the local repo.
-First, the changed files in the working directory needs to be added to the
-staging area.
+    First, the changed files in the working directory needs to be added to the
+    staging area.
 
     ```
     git add .
