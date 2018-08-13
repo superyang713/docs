@@ -19,30 +19,28 @@ them.
 
 * Now create a file called `.gitignore` in the same folder.
 
-```
-vim .gitignore
-```
+    ```
+    vim .gitignore
+    ```
 
-Inside `.gitignore` file, put the file or folder name so that these files will
-be excluded when the repo is uploaded to the remote host like Github.
+    Inside `.gitignore` file, put the file or folder name so that these files
+    will be excluded when the repo is uploaded to the remote host like Github.
 
 ## Commit the changes
 
-### Since a new file `.gitignore` is added, the local repo is different from
-the original state. At this point, it is a good time to commit the first change
-to the local repo.
+### Since a new file `.gitignore` is added, the local repo is different from the original state. At this point, it is a good time to commit the first change to the local repo.
 
 * There are two steps involved when committing a change to the local repo.
-  First, the changed files in the working directory needs to be added to the
-  staging area.
+First, the changed files in the working directory needs to be added to the
+staging area.
 
-```
-git add .
-```
+    ```
+    git add .
+    ```
 
-I normally use `.` so that I can add all changed files in the current folder to
-the staging area. If you want to be more specific, you can replace `.` with a
-specific file name.
+    I normally use `.` so that I can add all changed files in the current
+    folder to the staging area. If you want to be more specific, you can
+    replace `.` with a specific file name.
 
 
 
