@@ -10,12 +10,12 @@ them.
 
 * It is really easy to initialize a local repo, just type
 
-```
-git init
-```
+    ```
+    git init
+    ```
 
-at the top of the project directory. It will automatically create a hidden
-folder called `.git`. This is where all the version history will be stored.
+    at the top of the project directory. It will automatically create a hidden
+    folder called `.git`. This is where all the version history will be stored.
 
 * Now create a file called `.gitignore` in the same folder.
 
