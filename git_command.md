@@ -1,6 +1,6 @@
 Git is a very popular version control system (VCS). It records changes to a
 file or set of files over time so that a specific version can be recalled
-later.It cam be used locally, however, it works best with Github, a platform
+later. It can be used locally, however, it works best with Github, a platform
 that can  host all the local git repos remotely. Git can be intimidating at
 first, but it is actually not that hard after some practice. I would like to
 demonstrate my workflow with Git and Github and see how I can benefit from
@@ -87,7 +87,7 @@ them.
   The flag `-u` means remember where to push the repo in the future. So next
   time another commit needs to be pushed, we can just use `git push`.
 
-## working with a branch.
+## Working with a branch.
 
 * When working on a project, try not to work on the master branch directly,
   work on a different branch instead. To create a new branch, type the
