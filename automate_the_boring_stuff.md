@@ -18,3 +18,14 @@ zsh
 
 boom, the new server will be configured in the exactly the way as my local
 machine. How awesome is that!
+
+There are certainly many places that can be improved in my shell script, but so
+far it has already drastically improved my productivity already. If you are
+interested in how it is done, you can check out my repo [here](https://github.com/superyang713/vimrc-and-plugins).
+
+PS. The reason why I didn't wrap everything into the script and left separate
+command `exit` and `zsh` hanging there, is because a new zsh shell is installed
+when the script is running. After zsh shell is installed, it will automatically
+started, which cause the script to stop running. To solve this problem, I need
+to exit the zsh shell and re-enter it again. I might improve this in the near
+future.
