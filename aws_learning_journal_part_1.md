@@ -127,7 +127,7 @@ Architect.
 * Edge Location - the location where content will be cached. It is separate to
   an AWS Region/AZ.
 
-* Origi - the origin of all the files that the CDN will distribute. It can be
+* Origin - the origin of all the files that the CDN will distribute. It can be
   either an S3 bucket, an EC2 instance, an Elastic Load Balancer or Route 53.
 
 * Distribution - the name give the CDN which consists of a collection of Edge
@@ -142,3 +142,38 @@ Architect.
 * Objects are cached for the life of the TTL (Time To Live)
 
 * You can clear cached objects, but you will be charged.
+
+### Encryption
+
+* In Transit:
+    * SSL/TLS (https)
+
+* At Rest
+    * Server Side Encryption
+        1. SSE-S3: S3 Managed Keys
+        2. SSE-KMS: AWS Key Management Service Managed Keys
+        3. SSE-C: Server Side Encryption With Customer Provided Keys
+
+    * Client Side Encryption
+
+### Storage Gateway
+
+* File Gateway - For flat files, stored directly on S3.
+
+* Volumn Gateway: (for block based storage, i.e. OS, applications, etc)
+    1. Stored Volume - Entire Dataset is stored on site and is asynchronously
+       backed up to S3.
+    2. Cached Volumns - Entire dataset is stored on S3 and the most frequently
+       accessed data is cached on site.
+
+* Gateway Virtual Tape Library (VTL)
+
+    * Used for backup and uses popular backup applications like NetBackup,
+      Backup Exec, Veeam etc.
+
+### Snowball (the service is under migration, not storage)
+
+* Snowball: A way to transfer file from local to the cloud (AWS).
+
+* Import/Export: a legacy service that people send their own disk to datacenter
+  an upload/download data to/from the cloud.
