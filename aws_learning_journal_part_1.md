@@ -82,4 +82,63 @@ Architect.
 
 ### Versioning
 
-*
+* Stores all versions of an object (including all writes and even if you delete an object)
+
+* Great backup tool.
+
+* Once enabled, versioning cannot be disabled, only suspended.
+
+* Integrates with lifecycle rules.
+
+* Versioning's MFA Delete capability, which uses multi-factor authentication,
+  can be used to provide an additional layer of security.
+
+### Cross Region Replication
+
+* Versioning must be enabled on both the source and destination buckets.
+
+* Regions must be unique.
+
+* Files in an existing bucket are not replicated automatically. All subsequenty
+  updated files will be replicated automatically.
+
+* You cannot replicate to multiple buckets or use daisy chaining at the moment.
+
+* Delete markers are replicated, however, deleting individual versions or
+  delete markers will not be replicated.
+
+* Understand what Cross Region Replication is at a high level.
+
+### Lifecycle Management
+
+* Can be used in conjunction with versioning.
+
+* Can be applied to current versions and previous versions.
+
+* A custom lifecycle management policy:
+
+    1. Transition to the Standard - Infrequent Access Storage Class (30 days
+       after the creation date.)
+    2. Archive to the Glacier Storage Class (30 dyas after IA, if relevant)
+    3. Permanently Delete.
+
+### CloudFront
+
+* Edge Location - the location where content will be cached. It is separate to
+  an AWS Region/AZ.
+
+* Origi - the origin of all the files that the CDN will distribute. It can be
+  either an S3 bucket, an EC2 instance, an Elastic Load Balancer or Route 53.
+
+* Distribution - the name give the CDN which consists of a collection of Edge
+  Locations.
+
+    1. Web Distribution - used for websites.
+    2. RTMP - used for media streaming.
+
+* Edge locations are not just READ only, you can write to them too (ie put an
+  object on to them).
+
+* Objects are cached for the life of the TTL (Time To Live)
+
+* You can clear cached objects, but you will be charged.
