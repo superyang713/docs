@@ -43,3 +43,56 @@
         2. Provisioned IOPS SSD - Highest performance SSD volume for
            mission-critical low-latency or high-throughput workloads.
 
+### Security Group
+
+* All inbound traffic is blocked by default, whereas all outbound traffic is allowed.
+
+* Changes to security groups take effect immediately.
+
+* You can have any number of EC2 instances within a security group.
+
+* You can have multiple security groups attached to EC2 instances.
+
+* Security groups are STATEFUL, i.e. If you create an inbound rule allowing
+  traffic in, that traffic is automatically allowed back out again. On the
+  contrary, Network Access Control List is STATELESS.
+
+* You cannot block specific IP addresses using Security Groups, instead use
+  Network Access Control List (which will be talked about in the future).
+
+* You can specify allow rules, but not deny rules.
+
+### Volumes & Snapshots
+
+* Volumes exist on EBS. It is basically virtual hard disk.
+
+* Snapshots exist on S3.
+
+* Snapshots are point in time copies of volumes.
+
+* Snapshots are incremental - this means that only the blocks that have changed
+  since your last snapshot are moved to S3.
+
+* For the first snapshot, it may take some time to create.
+
+* To create a snapshot for EBS volumes that serve as root devices (bootable),
+  you should stop the instance before taking the snapshot.
+
+* However, you can take a snapshot while the instance is running.
+
+* You can create Amazon Machine Images (AMI) from both EBS-backed instances and
+  snapshots.
+
+* You can change EBS volume sizes on the fly, including changing the size and
+  storage type.
+
+* Volumes will always be in the same availablity zone as the EC2 instance.
+
+* To move an EC2 volume from one AZ/Region to another, take a snap or an image
+  of it, then copy it to the new AZ/Region.
+
+* Snapshots of encrypted volumes are encrypted automatically, and volumes
+  restored from encrypted snapshots are encrypted automatically.
+
+* Only unencrypted snapshots can be shared. If unecrypted, these snapshots can
+  be shared with other AWS accounts or made public.
