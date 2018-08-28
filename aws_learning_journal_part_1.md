@@ -9,11 +9,11 @@ Architect.
 ## Identity Access Management (IAM)
 
 * IAM consists of the following:
+
     1. Users
     2. Groups (a way to group users and apply policies to them collectively)
     3. Roles
-    4. policy Documents.(can be applied to users, groups, or roles individually,
-    and made by Json)
+    4. policy Documents.(can be applied to users, groups, or roles individually, and made by Json)
 
 * IAM is universal. It does not apply to regions at this time.
 
@@ -60,6 +60,7 @@ Architect.
   propagate).
 
 * S3 Storage Tiers:
+
     1. S3 (durable, immediately available, frequently accessed)
     2. S3 - IA (durable, immediately available, infrequently accessed)
     3. S3 One Zone - IA (even cheaper than IA, but only in once availability zone)
@@ -117,8 +118,7 @@ Architect.
 
 * A custom lifecycle management policy:
 
-    1. Transition to the Standard - Infrequent Access Storage Class (30 days
-       after the creation date.)
+    1. Transition to the Standard - Infrequent Access Storage Class (30 days after the creation date.)
     2. Archive to the Glacier Storage Class (30 dyas after IA, if relevant)
     3. Permanently Delete.
 
@@ -146,10 +146,13 @@ Architect.
 ### Encryption
 
 * In Transit:
+
     * SSL/TLS (https)
 
 * At Rest
+
     * Server Side Encryption
+
         1. SSE-S3: S3 Managed Keys
         2. SSE-KMS: AWS Key Management Service Managed Keys
         3. SSE-C: Server Side Encryption With Customer Provided Keys
@@ -161,6 +164,7 @@ Architect.
 * File Gateway - For flat files, stored directly on S3.
 
 * Volumn Gateway: (for block based storage, i.e. OS, applications, etc)
+
     1. Stored Volume - Entire Dataset is stored on site and is asynchronously
        backed up to S3.
     2. Cached Volumns - Entire dataset is stored on S3 and the most frequently
