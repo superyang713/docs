@@ -96,3 +96,67 @@
 
 * Only unencrypted snapshots can be shared. If unecrypted, these snapshots can
   be shared with other AWS accounts or made public.
+
+### EBS vs Instance Store
+
+* All AMIs are categroized as either backed by Amazon EBS or backed by instance
+  store.
+
+* For EBS volumes: the root device for an instance launched from the AMI is an
+  Amazon EBS volume created from an Amazon EBS snapshot.
+
+* For Instance Store Volume: the root device for an instance launched from the
+  AMI is an instance store volume created from a template sotred in Amazon S3.
+
+* Instance Store Volumes are sometimes called Ephemeral Storage.
+
+* Instance Store Volumes cannot be stopped. If the underlying host(hypervisor)
+  fails, you will lose your data.
+
+* EBS backed instances can be stopped. You will not lose the data on this
+  instance if it is stopped.
+
+* You can reboot both, and you will not lose your data.
+
+* By default, both ROOT volumes will be deleted on termination, however, with
+  EBS volumes,  you can tell AWS to keep the root device volume.
+
+### Elastic Load Balancers (ELB)
+
+* Three types of Load Balancers:
+
+    1. Application Load Balancers --> Layer 7
+    2. Network Load Balancers --> Layer 4
+    3. Classic Load Balancers --> legacy ELB.
+
+* 504 Error means the gateway has timed out. This means that the application is
+  not responding within the idle timeout period.
+
+    * Troubleshoot the application. Is it the Web Server or Database Server?
+
+* If you need the IPv4 address of your end user, look for the X-Forwarded-For
+  header.
+
+* INstances monitored by ELB are reported as: InService or OutofService.
+
+* Health checks check the instance health by talking to it.
+
+* Have their own DNS name. No IP address is given.
+
+### CloudWatch
+
+* Standard Monitoring = 5 min
+
+* Detailed Monitoring = 1 min. (charge may apply)
+
+* Dashboards - Creates awesome dashboards to see what is happening with your
+  AWS envrionment.
+
+* Alarms - Allows you to set alarms that notify you when particular thresholds
+  are hit.
+
+* Events - CloudWatch Events helps you to respond to state the changes in your
+  AWS resources.
+
+* Logs - CloudWatch Logs helps you to aggregate, monitor, and store logs.
+
