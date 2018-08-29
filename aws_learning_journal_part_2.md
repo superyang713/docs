@@ -160,3 +160,53 @@
 
 * Logs - CloudWatch Logs helps you to aggregate, monitor, and store logs.
 
+### EC2 Placement Groups
+
+* A clustered placement group can't span multiple Availability Zones.
+
+* A spread placement group can.
+
+* The name you specify for a placement group must be unique within your AWS
+  account.
+
+* Only certain types of instances can be launched in a placement group (compute
+  optimized, GPU, memory optimized, storage opimized).
+
+* You can't merge placement groups.
+
+* You can't move an existing instance into a placement group. You can create an
+  AMI from your existing instance, and then launch a new instance from the AMI
+  into the placement group.
+
+### Elastic File System (EFS)
+
+* Supports the Network File System version 4 (NFSv4) protocol.
+
+* It is more flexible then EBS.
+
+* You only pay for the storage you use (no pre-provisioning required).
+
+* Can scale up to the petabytes.
+
+* Can support thousands of concurrent NFS connections.
+
+* Data is stored across multiple AZ's within a region.
+
+* Unlike S3, EFS is block based storage.
+
+* EFS is similar to dropbox. It can be attached to different instances, whereas
+  EBS cannot.
+
+### Metadata
+
+* To fetch the instance metadata, use the following:
+
+  ```
+  curl http://169.254.169.254/latest/meta-data/
+  ```
+
+* To fetch the user metadata, use the following:
+
+  ```
+  curl http://169.254.169.254/latest/user-data/
+  ```
