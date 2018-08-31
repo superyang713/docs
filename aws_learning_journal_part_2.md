@@ -34,6 +34,8 @@
     10. P --> Graphics (think Pics)
     11. X --> Extreme Memory
 
+    [ec2 instance](https://www.dropbox.com/s/9hogiqiitoxkfpr/ec2_instance_types.png?raw=1)
+
 * Elastic Block Storage (EBS) types:
 
     * SSD
@@ -210,3 +212,26 @@
   ```
   curl http://169.254.169.254/latest/user-data/
   ```
+
+### Lambda (!!! Important)
+
+* No Servers! Continuous Scaling! Super Cheap!
+
+* Lambda scales out (not up) automatically
+
+* Lambda functions are independent, 1 event = 1 function
+
+* Lambda is serverless
+
+* Know what services are serverless! (EC2 is not serverless)
+
+* Lambda functions can trigger other lambda functions, 1 event can trigger
+  multiple functions as well.
+
+* Architectures can get extremely complicated, AWS X-ray allows you to debug
+  what is happening.
+
+* Lambda can do things globally, you can use it to back up S3 buckets to other
+  S3 buckets etc.
+
+* Know your triggers.
