@@ -34,7 +34,7 @@
     10. P --> Graphics (think Pics)
     11. X --> Extreme Memory
 
-    [ec2 instance](https://www.dropbox.com/s/9hogiqiitoxkfpr/ec2_instance_types.png?raw=1)
+    ![ec2 instance](https://www.dropbox.com/s/9hogiqiitoxkfpr/ec2_instance_types.png?raw=1)
 
 * Elastic Block Storage (EBS) types:
 
