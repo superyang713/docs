@@ -98,3 +98,20 @@ check the official docs [here](https://docs.aws.amazon.com/vpc/latest/userguide/
 
 
 ### Step 3: Create an Internet Gateway and attach it to one subnet.
+Go to the `Internet Gateways` section on the left panel and click `Create
+internet gateway`. Similar to the Subnets main page, if this is the first time
+you get into this page, you can see that there is already an Internet Gateway
+with the state of "attached" in the list. This Internet Gateway is actually
+attached to the default VPC. Since one Internet Gateway can only be attached to
+one VPC, you need to create a new one for your custom VPC. Click the `Create
+internet gateway` button, give it a name like "MyIGW", and hit `Create`.
+
+Now you will see that a new Internet Gateway appeared in the list with the
+state of "detached". To attach it to the custom VPC, click the `Action` button,
+and choose `Attach to VPC`. Inside the configuration page, you will notice that
+the internet gateway can only be attached to the custom VPC, and the default
+VPC is not in the option list, which indicates that an internet gateway and a
+VPC is one-to-one relationship. Now click `Attach`, and your VPC now has
+internet access. It is just that simple.
+
+![Internet Gateway](https://www.dropbox.com/s/fhah7lg4aaiinsy/internet_gateway.png?raw=1)
