@@ -35,7 +35,6 @@ AWS console.
   traffic to flow in and out of the subnets to which it is associated; however,
   when a custom ACL is created, it is default to deny all traffic.
 
-
 ## Goal
 
 I am going to demonstrate how to set up a VPC on AWS console. The configuration
@@ -96,8 +95,8 @@ Note that the available IP address shown in the subnet section is 251, instead
 of 256. This is because AWS reserved 5 IP address for specific use. You can
 check the official docs [here](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html)
 
-
 ### Step 3: Create an Internet Gateway and attach it to one subnet.
+
 Go to the `Internet Gateways` section on the left panel and click `Create
 internet gateway`. Similar to the Subnets main page, if this is the first time
 you get into this page, you can see that there is already an Internet Gateway
@@ -115,3 +114,119 @@ VPC is one-to-one relationship. Now click `Attach`, and your VPC now has
 internet access. It is just that simple.
 
 ![Internet Gateway](https://www.dropbox.com/s/fhah7lg4aaiinsy/internet_gateway.png?raw=1)
+
+### Step 4: Configure Route Table.
+
+Now that the custom VPC has an internet gateway attached, you need to configure
+the route table so that the public subnet can be routed to the internet
+gateway.
+
+Go to the Route Table panel, and you can see that there are two route tables in
+the list, which are the main (or default) route table for the default VPC and
+the newly created custom VPC, respectively. Choose the route table for the
+custom VPC, and click `Routes`, you can see there is already one rule in there,
+which is to allow all subnets to communicate with each other by default.
+
+Now go to the `Subnet Association` in the lower section, you can
+see a message,
+
+> You do not have any subnet associations.
+
+> The following subnets
+have not been explicitly associated with any route tables and are therefore
+associated with the main route table.
+
+which means that every single time when a new subnet is created, it will always
+be associated with the main route table by default. so for this very reason,
+it is not a good practice to let the main route table have a way out to the
+internet, because if so, every time a new subnet is provisioned, it will be
+internet accessible.
+
+So, let's create a new route table under the custom VPC shown below. After
+that, a new route table will be shown in the list.
+
+![Route Table](https://www.dropbox.com/s/6z8ysl9u9hgwdzz/create_route_table.png?raw=1)
+
+Next, you need to enable the internet access. To do this, go to the `Routes`
+section in the lower section, as shown below. Add a new rule to make all the
+subnets associated with this route table public.
+
+![Configure route table](https://www.dropbox.com/s/t2gnsfds1hlw9sw/config_route_table.png?raw=1)
+
+What's left to do now is to associate one subnet in our VPC to this route table
+to make it public. You can easily do this in `Subnet Associations`.
+
+### Step 5 (Optional): Enable auto-assign IP addresses.
+
+Since we have a public subnet with internet access now, public ip address for
+EC2 instance created inside the public subnet will be very important. By
+default, no ip address will be assigned to the EC2 instances in the public
+subnet, and we need to change it. Now go to `Subnets` panel, and click
+`Action`. In the dropdown menu, click `Modify auto-assign IP settings`. You
+can enable IP auto-assignement there.
+
+![Auto-assign IP](https://www.dropbox.com/s/7kb52qc28b26ccw/auto-assign.png?raw=1)
+
+### Step 6: Create a new security group for EC2 inside the custom VPC.
+
+Security group cannot span different VPCs. If you have security groups in
+your default VPC, you cannot use them in your newly created custom VPC. You can
+enable any port that fits your needs, but for me, I am just going to enable
+SSH, HTTP, and HTTPS ports, and call this security group `Web-DMZ`.
+
+![Auto-assign IP](https://www.dropbox.com/s/7a2z0a5qp4yq1k8/security_group.png?raw=1)
+
+Now create an EC2 instance in the public subnet and private subnet,
+respectively, and attach the `Web-DMZ` security group to the public instance.
+Now you can access into your public instance via ssh. For security reason, in
+order to access your private instance, you should use a bastion host, which is
+a hardened instance that you can create from AWS Nat AMI. For more information,
+please check out [this article](https://aws.amazon.com/blogs/security/securely-connect-to-linux-instances-running-in-a-private-amazon-vpc/).
+
+Another problem about the current setup for the private instance is that it
+does not have any internet access. What if you need to run security updates or
+install new applications on the private instance? You can do this by using
+Network Address Translation(NAT) instances or NAT Gateways.
+
+### Step 7: Set up NAT Gateways.
+
+NAT instance is on the way out, and NAT gateway is the new service offered by
+AWS. NAT gateway is more reliable and much easier to manage than NAT instance.
+The whole idea of NAT gateway is to enable instances in a private subnet to
+connect to the internet or other AWs services, but prevent the internet from
+initiating a connection with thoes instances.
+
+In oder to create a NAT gateway, Go to the `NAT Gateway` section under VPC,
+and click `Create NAT Gateway`. Make sure that the NAT gateway is created
+inside the public subnet. It is going to take about 5 to 10 minutes for
+the NAT Gateway to be actually provisioned.
+
+### Step 8: Add NAT Gateway to the Route Table.
+
+After the NAT Gateway is provisioned, go to the Route Tables, and configure the
+main route table, which the private subnet is associated with. The new rule is
+to allow traffic from all instances inside the private subnet to be routed to
+the NAT Gateway. By doing so, all the private instances will have internet
+access. In case you wonder what is the difference between NAT instance and NAT
+gateway, you can check it out [here](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-comparison.html),
+but definitely the NAT Gateway is recommended.
+
+One thing to note here is that NAT Gateway is used to provide safe internet
+access for instances inside a private subnet, whereas a bastion host inside a
+public subnet is recommended to use for SSH access into the private instances.
+
+![NAT Gateway](https://www.dropbox.com/s/lf7r1oq3ybsjtpz/nat_gateway.png?raw=1)
+
+### Step 9: Add new ACL to protect your subnets.
+
+ACL is the second layer of security for the VPC that acts as a firewall for
+controlling traffic in and out of one or more subnets. It is stateless. You
+might set up network ACLs with rules similar to your security groups in order
+to add an additional layer of security to your VPC. The default network ACL is
+configured to allow all traffic to flow in and out of the subnets to which it
+is associated; however, when a custom ACL is created, it is default to deny
+all traffic.
+
+Key thing to note here is that one subnet can only be associated with one ACL,
+whereas one ACL can be associated with multiple subnets. It is a one-to-many
+relationship.
