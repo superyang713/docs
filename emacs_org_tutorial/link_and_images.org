@@ -1,0 +1,48 @@
+* Links and images
+Org mode supports links to files, URLs, and to other points in the org file. In
+this example, let's use an image from my website. First copy it to the current
+directory. You can do this within emacs but for now just run this command in
+your terminal.
+
+curl http://www.star.bris.ac.uk/bjm/superman_cluster.gif -o superman_cluster.gif
+
+To add a link to a file use C-u C-c C-l and type the name of a file. Use
+tab-completion to select the image we just copied and you will then be asked for
+a description - you can press enter to leave this blank. This will create a link
+that looks like this
+
+[[file:superman_cluster.gif][test]]
+
+If you do this in your org file, you won't see the [[]] above, instead you'll
+see the text as a clickable link.
+
+Since the file we have linked to is an image, we can tell emacs to display the
+image in the document using C-c C-x C-v and use the same command to turn the
+image off again. 
+
+You can also click the link with the mouse, or use C-c C-o to follow it, which
+might open your web broweser, an image viewer or open a file in emacs depending
+on the target of the link.
+
+The structure of a link in org mode looks like this
+
+#+BEGIN_EXAMPLE
+[[link address][description]]
+#+END_EXAMPLE
+
+(I've enclosed the link in an example block which prevents org-mode from trying
+to interpret as a real link, for the purpose of showing its structure - we'll
+come back to the blocks like this later.)
+
+The link address is the URL or file name, and the description is the text that
+is displayed.
+
+Links to web pages are easy - just put the http address in as the link
+address. Use C-c C-l as a quick way to add such a link (remember we used C-u C-c
+C-l is for adding a link to a file).
+
+Finally, we can add a caption and a name to our image like it
+
+#+CAPTION: Superman and a galaxy cluster
+#+NAME: fig.super
+[[file:superman_cluster.gif][test]]
