@@ -5,8 +5,8 @@ such a beast to tame, so I am writing this note (written in Org mode) to remind
 myself of some useful tips and packages I have encountered during the Emacs
 learning journey.
 
-** Useful Packages
- - Org Mode
+** Useful Packages (Dependency not included)
+ - Org Mode (built in)
    This note is actually written in Org Mode. It is an awesome plugin for
    keeping notes, maintaining TODO lists, and authoring documents with a fast
    and effective plain text system.
@@ -14,5 +14,9 @@ learning journey.
    A plugin dedicated to git version control system.
  - Company
    A front end auto-completion plugin.
+   - Company-flow
+     Autocompletion fo javascript.
  - Spacemacs-dark theme
    An Emacs theme used by Spacemacs Project.
+ - Elpy
+   A major mode for python.
