@@ -20,3 +20,5 @@ learning journey.
    An Emacs theme used by Spacemacs Project.
  - Elpy
    A major mode for python.
+ - ace-jump-mode
+   Easy to jump to anywhere
