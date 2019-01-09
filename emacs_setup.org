@@ -20,6 +20,11 @@ learning journey.
    An Emacs theme used by Spacemacs Project.
  - Elpy
    A major mode for python.
+
+ - ace-window
+   A handy tool to select windows
+ - ivy 
+   fuzzy search
  - ace-jump-mode
    Easy to jump to anywhere
  - rainbow-delimiter
