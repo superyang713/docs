@@ -29,3 +29,9 @@ learning journey.
    Easy to jump to anywhere
  - rainbow-delimiter
  - powerline
+ - yasnippets
+   - yasnippets-snippets
+
+ - emmet mode
+   for html editing
+
