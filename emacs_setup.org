@@ -35,3 +35,20 @@ learning journey.
  - emmet mode
    for html editing
 
+** Elpy first time setup
+ 1. Create a new python3 virtualenv and activate it.
+#+BEGIN_SRC shell
+virtualenv .env
+source .env/bin/activate
+#+END_SRC
+
+ 2. Install all necessary packages for elpy 
+#+BEGIN_SRC shell
+pip install rope jedi importmagic autopep8 flake8 jupyter yapf black
+#+END_SRC
+
+ 3. Go to emacs, activate virtualenv and run ~M-x elpy-config~
+#+BEGIN_SRC 
+M-x pyvenv-workon .env
+M-x elpy-config
+#+END_SRC
