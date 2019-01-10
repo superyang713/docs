@@ -58,3 +58,11 @@ M-x elpy-config
     2. use C-c C-c to send code to the ipython console and run it.
 
 ** EIN (jupyter notebook on emacs)
+ 1. Solve plot background problem: put the following to the start of jupyter notebook
+#+BEGIN_SRC python
+%matplotlib inline
+import matplotlib as mpl
+mpl.rcParams["figure.facecolor"] = "white"
+mpl.rcParams["axes.facecolor"] = "white"
+mpl.rcParams["savefig.facecolor"] = "white"
+#+END_SRC
