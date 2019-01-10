@@ -52,3 +52,9 @@ pip install rope jedi importmagic autopep8 flake8 jupyter yapf black
 M-x pyvenv-workon .env
 M-x elpy-config
 #+END_SRC
+
+ 4. run python script
+    1. start a python process by ~M-x run-python~.
+    2. use C-c C-c to send code to the ipython console and run it.
+
+** EIN (jupyter notebook on emacs)
