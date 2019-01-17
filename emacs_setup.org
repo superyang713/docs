@@ -34,6 +34,8 @@ learning journey.
 
  - emmet mode
    for html editing
+ - AUCtex
+   for Latex editing
 
 ** Elpy first time setup
  1. Create a new python3 virtualenv and activate it.
