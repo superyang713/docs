@@ -1,10 +1,10 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.1.17)  17 JAN 2019 18:36
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.1.17)  17 JAN 2019 14:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**\input resume_cv.tex
-(./resume_cv.tex (./awesome-cv.cls
+**\input certification.tex
+(./certification.tex (./awesome-cv.cls
 Document Class: awesome-cv 2017/02/05 v1.6.1 Awesome Curriculum Vitae Class
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
@@ -1076,8 +1076,8 @@ tly
 LaTeX Info: Redefining \FA on input line 164.
 \g__fontspec_family_Roboto_int=\count294
 )
-(./resume_cv.aux)
-\openout1 = `resume_cv.aux'.
+(./certification.aux)
+\openout1 = `certification.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
 LaTeX Font Info:    ... okay on input line 43.
@@ -1197,9 +1197,13 @@ LaTeX Info: Redefining \ref on input line 43.
 LaTeX Info: Redefining \pageref on input line 43.
 LaTeX Info: Redefining \nameref on input line 43.
 
-(./resume_cv.out) (./resume_cv.out)
+(./certification.out) (./certification.out)
 \@outlinefile=\write6
-\openout6 = `resume_cv.out'.
+\openout6 = `certification.out'.
+
+
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
 
 \headertextwidth=\skip79
 \headerphotowidth=\skip80
@@ -1216,64 +1220,71 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 5.45381pt on input line 46.
 LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 46.
+(Font)              scaled to size 7.6pt on input line 46.
 LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/m/sc' will be
-(Font)              scaled to size 8.0pt on input line 46.
+(Font)              scaled to size 7.6pt on input line 46.
 
 Overfull \hbox (1.46pt too wide) in paragraph at lines 46--46
 []$[]$ $[]$$[]$ 
  []
 
-(./sections/education.tex
+(./sections/skills.tex
 LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/m/n' will be
 (Font)              scaled to size 16.0pt on input line 5.
 LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/bx/n' will be
 (Font)              scaled to size 16.0pt on input line 5.
 LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/m/n' will be
-(Font)              scaled to size 12.0pt on input line 25.
+(Font)              scaled to size 10.0pt on input line 16.
 LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/bx/n' will be
-(Font)              scaled to size 12.0pt on input line 25.
+(Font)              scaled to size 10.0pt on input line 16.
 LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/n' will be
-(Font)              scaled to size 11.0pt on input line 25.
-LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/sl' in size <11> not avai
-lable
-(Font)              Font shape `TU/SourceSansPro(2)/m/it' tried instead on inpu
-t line 25.
-LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/it' will be
-(Font)              scaled to size 11.0pt on input line 25.
-LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 25.
-LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/m/sc' will be
-(Font)              scaled to size 10.0pt on input line 25.
-LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 25.
-LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/sl' in size <10> not avai
-lable
-(Font)              Font shape `TU/SourceSansPro(2)/m/it' tried instead on inpu
-t line 25.
-LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/it' will be
-(Font)              scaled to size 10.0pt on input line 25.
-) (./sections/experience.tex) (./sections/skills.tex
-Overfull \hbox (38.70566pt too wide) in alignment at lines 11--46
+(Font)              scaled to size 9.0pt on input line 16.
+
+Overfull \hbox (26.57365pt too wide) in alignment at lines 11--38
 [] [] 
  []
 
-) [1
+) (./sections/experience.tex
+LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/sl' in size <9> not avail
+able
+(Font)              Font shape `TU/SourceSansPro(2)/m/it' tried instead on inpu
+t line 26.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/it' will be
+(Font)              scaled to size 9.0pt on input line 26.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/m/n' will be
+(Font)              scaled to size 8.0pt on input line 26.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/m/sc' will be
+(Font)              scaled to size 8.0pt on input line 26.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/n' will be
+(Font)              scaled to size 8.0pt on input line 26.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/sl' in size <8> not avail
+able
+(Font)              Font shape `TU/SourceSansPro(2)/m/it' tried instead on inpu
+t line 26.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/it' will be
+(Font)              scaled to size 8.0pt on input line 26.
+) (./sections/education.tex)
 
-]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 58.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 58.
- (./resume_cv.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 58.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 58.
- ) 
+! LaTeX Error: File `sections/certification.tex' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: tex)
+
+Enter file name: 
+./certification.tex:55: Emergency stop.
+<read *> 
+         
+l.55 \input{sections/certification.tex}
+                                       ^^M
+*** (cannot \read from terminal in nonstop modes)
+
+ 
 Here is how much of TeX's memory you used:
- 37901 strings out of 493007
- 747203 string characters out of 6136719
- 949876 words of memory out of 5000000
- 41404 multiletter control sequences out of 15000+600000
- 532698 words of font info for 79 fonts, out of 8000000 for 9000
+ 37900 strings out of 493007
+ 747245 string characters out of 6136719
+ 954862 words of memory out of 5000000
+ 41405 multiletter control sequences out of 15000+600000
+ 532706 words of font info for 80 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 72i,11n,89p,10435b,428s stack positions out of 5000i,500n,10000p,200000b,80000s
-
-Output written on resume_cv.pdf (1 page).
+ 72i,10n,89p,10439b,428s stack positions out of 5000i,500n,10000p,200000b,80000s
+No pages of output.
