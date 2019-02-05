@@ -1,0 +1,13 @@
+* Workflow for full stack web development with aws and react
+
+** IAM setup
+ - Create an IAM admin user for programatic access.
+ - install and configure AWS CLI.
+
+** Setting up serverless backend
+ - Create a DynamoDB table
+ - Create an S3 bucket for file uploads
+ - Create a Cognito user pool
+ - Create a Cognito test user using AWS CLI
+
+** Set up the Serverless Framework.
