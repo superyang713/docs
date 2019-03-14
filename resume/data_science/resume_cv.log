@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.1.17)  13 MAR 2019 17:22
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.1.17)  14 MAR 2019 16:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1113,11 +1113,11 @@ LaTeX Info: Redefining \selectfont on input line 24.
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
 * h-part:(L,W,R)=(56.9055pt, 500.484pt, 56.9055pt)
-* v-part:(T,H,B)=(28.45274pt, 709.61174pt, 56.9055pt)
+* v-part:(T,H,B)=(28.45274pt, 738.0645pt, 28.45274pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
 * \textwidth=500.484pt
-* \textheight=709.61174pt
+* \textheight=738.0645pt
 * \oddsidemargin=-15.36449pt
 * \evensidemargin=-15.36449pt
 * \topmargin=-80.81725pt
@@ -1204,74 +1204,72 @@ LaTeX Info: Redefining \nameref on input line 24.
 \headertextwidth=\skip79
 \headerphotowidth=\skip80
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.95015pt on input line 44.
+(Font)              scaled to size 10.95015pt on input line 42.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.67863pt on input line 44.
+(Font)              scaled to size 7.67863pt on input line 42.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.45398pt on input line 44.
+(Font)              scaled to size 5.45398pt on input line 42.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 10.94983pt on input line 44.
+(Font)              scaled to size 10.94983pt on input line 42.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.6784pt on input line 44.
+(Font)              scaled to size 7.6784pt on input line 42.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.45381pt on input line 44.
-LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 44.
-LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/m/sc' will be
-(Font)              scaled to size 8.0pt on input line 44.
+(Font)              scaled to size 5.45381pt on input line 42.
 
-Overfull \hbox (1.46pt too wide) in paragraph at lines 44--44
+Overfull \hbox (1.46pt too wide) in paragraph at lines 42--42
 []$[]$ $[]$$[]$ 
  []
 
-(./sections/skills.tex
+(./sections/experience.tex
 LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/m/n' will be
 (Font)              scaled to size 16.0pt on input line 5.
 LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/bx/n' will be
 (Font)              scaled to size 16.0pt on input line 5.
 LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/m/n' will be
-(Font)              scaled to size 9.0pt on input line 17.
+(Font)              scaled to size 9.0pt on input line 36.
 LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/bx/n' will be
-(Font)              scaled to size 9.0pt on input line 17.
+(Font)              scaled to size 9.0pt on input line 36.
 LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 17.
-
-Overfull \hbox (20.50766pt too wide) in alignment at lines 11--45
-[] [] 
- []
-
-) (./sections/projects.tex
-LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/n' will be
-(Font)              scaled to size 9.0pt on input line 27.
+(Font)              scaled to size 9.0pt on input line 36.
 LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/sl' in size <9> not avail
 able
 (Font)              Font shape `TU/SourceSansPro(2)/m/it' tried instead on inpu
-t line 27.
+t line 36.
 LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/it' will be
-(Font)              scaled to size 9.0pt on input line 27.
+(Font)              scaled to size 9.0pt on input line 36.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/m/n' will be
+(Font)              scaled to size 8.0pt on input line 36.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(1)/m/sc' will be
+(Font)              scaled to size 8.0pt on input line 36.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/n' will be
+(Font)              scaled to size 8.0pt on input line 36.
 LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/sl' in size <8> not avail
 able
 (Font)              Font shape `TU/SourceSansPro(2)/m/it' tried instead on inpu
-t line 27.
+t line 36.
 LaTeX Font Info:    Font shape `TU/SourceSansPro(2)/m/it' will be
-(Font)              scaled to size 8.0pt on input line 27.
-) (./sections/experience.tex)
-(./sections/education.tex [1
+(Font)              scaled to size 8.0pt on input line 36.
+) (./sections/projects.tex) (./sections/skills.tex
+Overfull \hbox (25.01666pt too wide) in alignment at lines 11--39
+[] [] 
+ []
 
-]) [2]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 56.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 56.
+) (./sections/education.tex) [1
+
+]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 54.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 54.
  (./resume_cv.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 56.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 56.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 54.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 54.
  ) 
 Here is how much of TeX's memory you used:
  37877 strings out of 493007
  746742 string characters out of 6136719
- 954961 words of memory out of 5000000
+ 954958 words of memory out of 5000000
  41379 multiletter control sequences out of 15000+600000
  532682 words of font info for 77 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  72i,11n,89p,10435b,428s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on resume_cv.pdf (2 pages).
+Output written on resume_cv.pdf (1 page).
