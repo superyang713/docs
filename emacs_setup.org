@@ -68,3 +68,17 @@ mpl.rcParams["figure.facecolor"] = "white"
 mpl.rcParams["axes.facecolor"] = "white"
 mpl.rcParams["savefig.facecolor"] = "white"
 #+END_SRC
+
+
+** Email setup **
+ 1. Sending email:
+    MSMTP
+    
+ 2. Reading email:
+    Notmuch
+
+ 3. Fetching email:
+    offlineimap
+
+ Installation:
+ sudo apt install MSMTP notmuch offlineimap
