@@ -1,0 +1,79 @@
+* Computer Specs:
+  1. Graphics Card -- RTX 2070
+  2. CPU -- Core i9 9900K
+  3. Ubuntu 18.04
+* Goal:
+  Set up an envrionment that tensorflow can utilize GPU. More specifically, the
+  envrionment is as follows:
+  1. Cuda Toolkit 10.0
+  2. Cudnn 7.4.2 for Cuda 10.0
+* Background:
+** What is Cuda?
+   The NVIDIA® CUDA® Toolkit provides a development environment for creating
+   high performance GPU-accelerated applications. With the CUDA Toolkit, you can
+   develop, optimize and deploy your applications on GPU-accelerated embedded
+   systems, desktop workstations, enterprise data centers, cloud-based platforms
+   and HPC supercomputers. The toolkit includes GPU-accelerated libraries,
+   debugging and optimization tools, a C/C++ compiler and a runtime library to
+   deploy your application.
+
+** What is Cudnn?
+   The NVIDIA CUDA® Deep Neural Network library (cuDNN) is a GPU-accelerated
+   library of primitives for deep neural networks. cuDNN provides highly tuned
+   implementations for standard routines such as forward and backward
+   convolution, pooling, normalization, and activation layers.
+
+   It is basically just a library used by Cuda for deep learning algorithms.
+
+** Common Mistakes
+   1. Cuda and Cudnn versions are not compatible with tensorflow.
+   2. Install the wrong version of tensorflow.
+   3. I have encountered this multiple times, and for some reason, Cuda 10.1 was
+      always installed. It turned out the information shown from the command
+      ~nvidia-smi~ does not show the correct version of Cuda. To check if the
+      correct version of Cuda is install, navigate to the folder /usr/local/ to
+      see what version of Cuda has been installed.
+
+* Installation
+
+** Remove previous Cuda and Nvidia Drivers
+
+** Install Nvidia Driver
+   1. Download the Nvidia driver installer, which is a .run file from [[https://www.nvidia.com/en-us/drivers/unix/][here]].
+   2. change the installer to an executable file.
+   3. run ~sudo ./<installer>.run --no-x-check
+    
+** Install Cuda 10.0
+   #+begin_src sh
+   sudo dpkg -i cuda-repo-ubuntu1804_10.0.130-1_amd64.deb 
+   sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
+   sudo apt-get update 
+   sudo apt-get install cuda-10-0
+   #+end_src
+
+** Set up environment variables for cuda
+   #+begin_src sh
+   echo 'export path=/usr/local/cuda-10.0/bin:$path' >> ~/.bashrc
+   echo 'export cudadir=/usr/local/cuda-10.0' >> ~/.bashrc
+   echo 'export ld_library_path=$ld_library_path:/usr/local/cuda-10.0/lib64' >> ~/.bashrc
+   source ~/.bashrc
+   #+end_src
+
+** Check if correct version of Cuda has been installed. 
+   #+begin_src sh
+   nvcc --version
+   #+end_src
+
+** Install Cudnn 
+   Download the cudnn file from Nvidia.
+   #+begin_src sh
+   tar -xzvf ~/Downloads/cudnn-10.0-linux-x64-v7.4.2.24.tgz
+   sudo cp -P cuda/include/cudnn.h /usr/local/cuda-10.0/include
+   sudo cp -P cuda/lib64/libcudnn* /usr/local/cuda-10.0/lib64/
+   sudo chmod a+r /usr/local/cuda-10.0/lib64/libcudnn*
+   #+end_src
+
+** The rest
+   The rest should be easy. Create python virtual envrionment, and install the
+   right verison of tensorflow-gpu.
+
